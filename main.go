@@ -10,13 +10,10 @@ import (
 )
 
 func main() {
-	fmt.Println("Hello, World!")
 	reader := bufio.NewReader(os.Stdin)
 	num1, num2 := getTwoNumbersFromUser(reader)
-	fmt.Println(num1, num2)
-	nextNum := calculateNextNumber(num1, num2)
-	fmt.Printf("The next number in the sequence is: %d\n", nextNum)
-	fmt.Println("The end.")
+	sequence := buildSequence(num1, num2)
+	fmt.Println(sequence)
 }
 
 func getTwoNumbersFromUser(reader io.Reader) (int, int) {
@@ -32,7 +29,6 @@ func getTwoNumbersFromUser(reader io.Reader) (int, int) {
 				num1, err1 := strconv.Atoi(parts[0])
 				num2, err2 := strconv.Atoi(parts[1])
 				if err1 == nil && err2 == nil && num1 > 0 && num2 > 0 {
-					fmt.Printf("The two integers are: %d and %d\n", num1, num2)
 					return num1, num2
 				}
 			}
@@ -69,4 +65,15 @@ func getLowestPrimeFactor(num int) int {
 	}
 	fmt.Println("Error: No prime factor found. Returning 1 instead.")
 	return 1
+}
+func buildSequence(num1 int, num2 int) []int {
+	sequence := []int{num1, num2}
+	nextNum := calculateNextNumber(num1, num2)
+	// Continue adding to the sequence until it contains 10 elements
+	for len(sequence) < 10 {
+		sequence = append(sequence, nextNum)
+		// Call calculateNextNumber with the last two elements of the sequence
+		nextNum = calculateNextNumber(sequence[len(sequence)-2], sequence[len(sequence)-1])
+	}
+	return sequence
 }
