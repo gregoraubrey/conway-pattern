@@ -11,7 +11,7 @@ The program asks you for two positive integers and the desired length of the seq
 
 `[1 1 2 3 5 4 3 7 5 6 11 17 14 31 15 23 19 21 20 41]`
 
-`[1 1 2 3 5 4 3 7 5 6 11 17 14 31 15 23 19 21 20 41]`
+`[2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2]`
 
 `[44 55 33 44 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11]`
 
