@@ -31,16 +31,13 @@ func getTwoNumbersFromUser(reader io.Reader) (int, int) {
 			if len(parts) == 2 {
 				num1, err1 := strconv.Atoi(parts[0])
 				num2, err2 := strconv.Atoi(parts[1])
-				if err1 == nil && err2 == nil {
+				if err1 == nil && err2 == nil && num1 > 0 && num2 > 0 {
 					fmt.Printf("The two integers are: %d and %d\n", num1, num2)
 					return num1, num2
-				} else {
-					fmt.Println("Error: Invalid input, please enter two integers.")
 				}
-			} else {
-				fmt.Println("Error: Invalid input, please enter two integers.")
 			}
 		}
+		fmt.Println("Error: Invalid input, please enter two integers.")
 	}
 }
 
