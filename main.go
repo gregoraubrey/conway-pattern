@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"io"
+	"math"
 	"os"
 	"strconv"
 	"strings"
@@ -51,7 +52,17 @@ func calculateNextNumber(num1 int, num2 int) int {
 }
 
 func isPrime(num int) bool {
-	for i := 2; i < num; i++ {
+	if num <= 1 {
+		return false
+	}
+	if num == 2 {
+		return true
+	}
+	if num%2 == 0 {
+		return false
+	}
+	squareRoot := int(math.Sqrt(float64(num)))
+	for i := 3; i <= squareRoot; i += 2 {
 		if num%i == 0 {
 			return false
 		}
