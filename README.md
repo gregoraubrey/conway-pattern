@@ -16,3 +16,5 @@ The program asks you for two positive integers and the desired length of the seq
 `[44 55 33 44 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11]`
 
 `[67 21 44 13 19 16 7 23 15 19 17 18 7 5 6 11 17 14 31 15]`
+
+To run the program, just clone down the repo, have Go installed on your computer, `cd` into the repo and run `go run main.go` in a terminal emulator.
