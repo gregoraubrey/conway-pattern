@@ -12,7 +12,9 @@ import (
 func main() {
 	reader := bufio.NewReader(os.Stdin)
 	num1, num2 := getTwoNumbersFromUser(reader)
-	sequence := buildSequence(num1, num2)
+	reader2 := bufio.NewReader(os.Stdin)
+	length := getLengthFromUser(reader2)
+	sequence := buildSequence(num1, num2, length)
 	fmt.Println(sequence)
 }
 
@@ -66,14 +68,30 @@ func getLowestPrimeFactor(num int) int {
 	fmt.Println("Error: No prime factor found. Returning 1 instead.")
 	return 1
 }
-func buildSequence(num1 int, num2 int) []int {
+func buildSequence(num1 int, num2 int, length int) []int {
 	sequence := []int{num1, num2}
 	nextNum := calculateNextNumber(num1, num2)
-	// Continue adding to the sequence until it contains 10 elements
-	for len(sequence) < 10 {
+	// Continue adding to the sequence until it contains `length` elements
+	for len(sequence) < length {
 		sequence = append(sequence, nextNum)
 		// Call calculateNextNumber with the last two elements of the sequence
 		nextNum = calculateNextNumber(sequence[len(sequence)-2], sequence[len(sequence)-1])
 	}
 	return sequence
+}
+
+func getLengthFromUser(reader io.Reader) int {
+	scanner := bufio.NewScanner(reader)
+	for {
+		fmt.Print("Enter the length of the sequence as a positive integer of at least 2: ")
+		if scanner.Scan() {
+			input := scanner.Text()
+			input = strings.TrimSpace(input)
+			length, err := strconv.Atoi(input)
+			if err == nil && length >= 2 {
+				return length
+			}
+		}
+		fmt.Println("Error: Invalid input, please enter a positive integer of at least 2.")
+	}
 }
